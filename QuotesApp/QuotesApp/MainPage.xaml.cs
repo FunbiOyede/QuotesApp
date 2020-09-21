@@ -13,6 +13,9 @@ namespace QuotesApp
         public MainPage()
         {
             InitializeComponent();
+            BindingContext = new MainViewModel();
         }
+
+       
     }
 }
