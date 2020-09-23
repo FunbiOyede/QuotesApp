@@ -12,7 +12,7 @@ namespace QuotesApp
     {
         public ICommand LoginCommand { get; set; }
 
-
+        private INavigation _navigation;
         private string name;
 
         
@@ -23,16 +23,18 @@ namespace QuotesApp
             set { name = value; RaisePropertyChanged(nameof(Name)); } 
         }
 
-        public MainViewModel()
+        public MainViewModel(INavigation navigation)
         {
             LoginCommand = new Command(login);
+            _navigation = navigation;
         }
 
 
         private void login()
         {
           
-            App.Current.MainPage.DisplayAlert("Hello", Name, "ok");
+            App.Current.MainPage.DisplayAlert("Navigate", Name, "ok");
+            _navigation.PushAsync(new PageA(Name));
         }
 
 
