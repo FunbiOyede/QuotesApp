@@ -16,23 +16,17 @@
                 TextColor="White" />
         </Frame>
 
-        <Entry
-            x:Name="source"
-            BackgroundColor="Black"
-            Placeholder="source" />
-        <Entry
-            x:Name="target"
-            BackgroundColor="Black"
-            Placeholder="target"
-            Text="{Binding Source={x:Reference source}, Path=Text, Mode=OneWay}" />
-
-        <BoxView BackgroundColor="Blue" />
-        <Entry
-            BackgroundColor="Red"
-            Placeholder="Control Room"
-            Text="{Binding Name}" />
-        <Label Text="{Binding Name}" TextColor="Black" />
-        <Button Command="{Binding LoginCommand}" Text="login" />
+        <StackLayout>
+            <ListView ItemsSource="{Binding QuotesLists}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label Text="{Binding text}" TextColor="Red" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </StackLayout>
 
 </ContentPage>

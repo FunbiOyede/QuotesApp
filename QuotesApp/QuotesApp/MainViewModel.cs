@@ -1,5 +1,8 @@
-﻿using System;
+﻿using QuotesApp.AppServices;
+using QuotesApp.model;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -14,8 +17,11 @@ namespace QuotesApp
 
         private INavigation _navigation;
         private string name;
+        public ObservableCollection<QuotesModel> QuotesLists { get; set; }
+        QuotesServices qs = new QuotesServices();
 
-        
+
+
 
         public string Name
         {
@@ -25,16 +31,21 @@ namespace QuotesApp
 
         public MainViewModel(INavigation navigation)
         {
-            LoginCommand = new Command(login);
+            
             _navigation = navigation;
+            QuotesLists = new ObservableCollection<QuotesModel>();
+            LoadData();
         }
 
 
-        private void login()
+        private async void LoadData()
         {
-          
-            App.Current.MainPage.DisplayAlert("Navigate", Name, "ok");
-            _navigation.PushAsync(new PageA(Name));
+           
+            var quotes = await  qs.FetchQuotes();
+            foreach(var quote in quotes)
+            {
+                QuotesLists.Add(quote);
+            }
         }
 
 
