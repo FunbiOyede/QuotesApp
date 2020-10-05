@@ -16,9 +16,11 @@ namespace QuotesApp
         public ICommand LoginCommand { get; set; }
 
         private INavigation _navigation;
+
         private string name;
         public ObservableCollection<QuotesModel> QuotesLists { get; set; }
-        QuotesServices qs = new QuotesServices();
+
+        QuotesServices _quotes = new QuotesServices();
 
 
 
@@ -34,6 +36,7 @@ namespace QuotesApp
             
             _navigation = navigation;
             QuotesLists = new ObservableCollection<QuotesModel>();
+         
             LoadData();
         }
 
@@ -41,7 +44,7 @@ namespace QuotesApp
         private async void LoadData()
         {
            
-            var quotes = await  qs.FetchQuotes();
+            var quotes = await _quotes.FetchQuotes();
             foreach(var quote in quotes)
             {
                 QuotesLists.Add(quote);

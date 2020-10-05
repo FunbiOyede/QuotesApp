@@ -8,7 +8,15 @@ using System.Threading.Tasks;
 
 namespace QuotesApp.AppServices
 {
-    public class QuotesServices
+
+    public interface IQuotesService
+    {
+        Task<List<QuotesModel>> FetchQuotes();
+
+
+    }
+
+    public class QuotesServices : IQuotesService
     {
 
         public async Task<List<QuotesModel>> FetchQuotes()
@@ -17,8 +25,8 @@ namespace QuotesApp.AppServices
             try
             {
                 var apiResponse = await quotesClient.GetQuotes();
-                
-               if(apiResponse != null)
+
+                if (apiResponse != null)
                 {
                     var data = apiResponse;
                     return data;

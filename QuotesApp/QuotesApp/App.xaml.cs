@@ -1,6 +1,7 @@
-﻿using System;
+﻿using CommonServiceLocator;
+using QuotesApp.AppServices;
+using Unity;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace QuotesApp
 {
@@ -9,6 +10,9 @@ namespace QuotesApp
         public App()
         {
             InitializeComponent();
+            var unityContainer = new UnityContainer();
+            //unityContainer.RegisterType<IQuotesService, QuotesServices>();
+            //ServiceLocator.SetLocatorProvider(() => new ServiceLocator(unityContainer));
 
             MainPage = new NavigationPage(new MainPage());
         }
