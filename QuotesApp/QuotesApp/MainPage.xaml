@@ -17,11 +17,21 @@
         </Frame>
 
         <StackLayout>
+            <ActivityIndicator
+                IsRunning="{Binding Loader}"
+                IsVisible="{Binding Loader}"
+                Color="Blue" />
             <ListView ItemsSource="{Binding QuotesLists}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Label Text="{Binding text}" TextColor="Red" />
+                            <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label
+                                    Padding="5"
+                                    Text="{Binding text}"
+                                    TextColor="Black" />
+                            </StackLayout>
+
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

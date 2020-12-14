@@ -11,13 +11,14 @@ using Xamarin.Forms;
 
 namespace QuotesApp
 {
-   public class MainViewModel : INotifyPropertyChanged
+   public class MainViewModel : BaseViewModel
     {
         public ICommand LoginCommand { get; set; }
 
         private INavigation _navigation;
 
         private string name;
+        private bool loader;
         public ObservableCollection<QuotesModel> QuotesLists { get; set; }
 
         QuotesServices _quotes = new QuotesServices();
@@ -31,12 +32,17 @@ namespace QuotesApp
             set { name = value; RaisePropertyChanged(nameof(Name)); } 
         }
 
+
+        public bool Loader {
+            get { return loader; }
+            set { loader = value; RaisePropertyChanged(nameof(Loader)); }
+        }
         public MainViewModel(INavigation navigation)
         {
-            
-            _navigation = navigation;
+
+            //_navigation = navigation;
             QuotesLists = new ObservableCollection<QuotesModel>();
-         
+            Loader = true;
             LoadData();
         }
 
@@ -49,16 +55,11 @@ namespace QuotesApp
             {
                 QuotesLists.Add(quote);
             }
+
+            Loader = false;
         }
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void RaisePropertyChanged(string propertyName)
-        {
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
-        }
+      
     }
 }
