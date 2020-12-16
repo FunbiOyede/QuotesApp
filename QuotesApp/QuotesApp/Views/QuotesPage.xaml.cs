@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
-namespace QuotesApp
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+
+namespace QuotesApp.Views
 {
-    public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class QuotesPage : ContentPage
     {
-        public MainPage()
+        public QuotesPage()
         {
             InitializeComponent();
-            BindingContext = new MainViewModel(Navigation);
         }
-       
     }
 }

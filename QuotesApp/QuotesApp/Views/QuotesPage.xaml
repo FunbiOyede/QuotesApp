@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="QuotesApp.Views.QuotesPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BindingContext="{Binding QuotesViewModel, Source={StaticResource Locator}}">
+    <ContentPage.Content>
+
+        <StackLayout BackgroundColor="White">
+            <Frame
+                Padding="24"
+                BackgroundColor="#2196F3"
+                CornerRadius="0">
+                <Label
+                    FontSize="36"
+                    HorizontalTextAlignment="Center"
+                    Text="Quotes App"
+                    TextColor="White" />
+            </Frame>
+
+            <StackLayout>
+                <ActivityIndicator
+                    IsRunning="{Binding Loader}"
+                    IsVisible="{Binding Loader}"
+                    Color="Blue" />
+                <ListView ItemsSource="{Binding QuotesLists}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Label
+                                        Padding="5"
+                                        Text="{Binding text}"
+                                        TextColor="Black" />
+                                </StackLayout>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
